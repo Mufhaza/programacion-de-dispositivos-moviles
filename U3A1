@@ -1,0 +1,357 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(home: CalcButton(),));
+}
+
+
+//IMPLEMENTACION DE LA CLASE calcButton
+class CalcButton extends StatefulWidget {
+  @override
+  CalcButtonState createState() => CalcButtonState();
+}
+  class CalcButtonState extends State<CalcButton> {
+   final _controladordetexto = TextEditingController();
+    double width;
+    
+    int operando1;
+    int operando2;
+    String operador;
+    String TextoBoton;
+    String ColorTexto;
+    String ColorFondo;
+    int result = 0;
+    
+    CalcButton(String TextoBoton, String ColorTexto, String ColorFondo){
+      this.TextoBoton = TextoBoton;
+      this.ColorTexto = ColorTexto;
+      this.ColorFondo = ColorFondo;
+    }//FIN DEL CONSTRUCTOR
+    void onPressOfButton() {    
+      TextField(
+        controller: _controladordetexto );
+    setState(() {
+      result = int.parse(_controladordetexto.text);
+    });
+  }//fin del método onPressOfButton
+    
+    @override
+  void initState() {
+    
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    width = MediaQuery.of(context).size.width;
+    super.didChangeDependencies();
+  }
+
+ Widget build(BuildContext context) {
+    return Scaffold(
+      body: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _controladordetexto,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'ingresa aqui las cantidades',
+                ),
+                keyboardType: TextInputType.number,
+              )),
+            Padding(
+                padding: EdgeInsets.all(16),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                 child: Text(result.toString(), style: TextStyle(fontSize: 60)),
+                )),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text("7",style: TextStyle(color: Colors.white),),
+                        color: Colors.red,
+                        onPressed: (){
+                        _controladordetexto.text = _controladordetexto.text+"7";
+                        
+                          },
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "8",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                        _controladordetexto.text = _controladordetexto.text+"8";
+                        },
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "9",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"9";},
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "+",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.black,
+                        onPressed: () {
+                          operando1 = int.parse(_controladordetexto.text);
+                          _controladordetexto.text = "";
+                          operador = '+';
+                          TextField(
+                             controller: _controladordetexto );
+                             setState(() {
+                             result = operando1;
+                               
+                          });
+                        },
+                      )),
+                ]),
+ //termino de la primera fila
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "4",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"4";},
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "5",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"5";},
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "6",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"6";},
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "-",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.black,
+                        onPressed: () {
+                          operando1 = int.parse(_controladordetexto.text);
+                          _controladordetexto.text = "";
+                          operador = '-';
+                          TextField(
+                             controller: _controladordetexto );
+                             setState(() {
+                             result = operando1;
+                               
+                          });
+                        },
+                      )),
+                ]),
+ //termino de la segunda fila
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "1",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"1";
+                        },
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "2",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"2";},
+                      )),
+
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "3",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"3";},
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "x",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.black,
+                        onPressed: () {
+                          operando1 = int.parse(_controladordetexto.text);
+                          _controladordetexto.text = "";
+                          operador = 'x';
+                          TextField(
+                             controller: _controladordetexto );
+                             setState(() {
+                             result = operando1;
+                               
+                          });
+                        },
+                      )),
+                ]),
+ //termino de la tercer fila
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "AC",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = "";
+                          result = 0;
+                          setState(() {
+                             _controladordetexto.text = result.toString();
+                          });
+                        
+                        },
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "0",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.red,
+                        onPressed: () {
+                          _controladordetexto.text = _controladordetexto.text+"0";},
+                      )),
+
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "=",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.blue,
+                        onPressed: (){
+                          operando2 = int.parse(_controladordetexto.text);
+                          switch (operador){
+                            case '+':
+                              result = operando1+operando2;
+                              break;
+                              case '-':
+                              result = operando1-operando2;
+                              break;
+                              case 'x':
+                              result = operando1*operando2;
+                              break;
+                              case '/':
+                              if (operando2 == 0){result = 0;}
+                              else{
+                                result = operando1 ~/ operando2;
+                              }
+                              break;
+                          }
+                          
+                          TextField(
+                             controller: _controladordetexto );
+                             setState(() {
+                             _controladordetexto.text = result.toString();
+                          });
+                        },
+                      )),
+                  //Componente boton
+                  Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: RaisedButton(
+                        child: Text(
+                          "/",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Colors.black,
+                        onPressed: () {
+                          operando1 = int.parse(_controladordetexto.text);
+                          _controladordetexto.text = "";
+                          operador = '/';
+                          TextField(
+                             controller: _controladordetexto );
+                             setState(() {
+                             result = operando1;
+                               
+                          });
+                        },
+                      )),
+                ]),
+ //termino de la cuarta fila
+              ]),
+          ),
+      );
+     }
+    }//FIN DE LA CLASE CalcButtonState
